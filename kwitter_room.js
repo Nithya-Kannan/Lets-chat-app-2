@@ -1,21 +1,34 @@
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB4FyvRL7nY_uxOwIoXJrUIIJhM4Yzo-1U",
-  authDomain: "chatroom-fdb2a.firebaseapp.com",
-  databaseURL:"https://chatroom-fdb2a-default-rtdb.firebaseio.com",
-  projectId: "chatroom-fdb2a",
-  storageBucket: "chatroom-fdb2a.appspot.com",
-  messagingSenderId: "726514203250",
-  appId: "1:726514203250:web:0ad2d1872edc6e184020eb"
+  apiKey: "AIzaSyCq_D63xllyCD4xsqiLYRV_84a6cj83k5E",
+  authDomain: "chatapp-12bc9.firebaseapp.com",
+  databaseURL: "https://chatapp-12bc9.firebaseio.com",
+  projectId: "chatapp-12bc9",
+  storageBucket: "chatapp-12bc9.appspot.com",
+  messagingSenderId: "1016967648867",
+  appId: "1:1016967648867:web:f52b2e9f4a32912b728a56",
+  measurementId: "G-BMS6EN71Z7"
 };
 
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-  initializeApp(firebaseConfig);
+  
   
   function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
          Room_names = childKey;
         
         });});}
   getData();
+
+  function addRoom(){
+    room_name=document.getElementById("room_name").value;
+    firebase.database().ref("/").child(room_name).update({
+      purpose:"Adding room name"
+  
+    });
+    localStorage.setItem("room_name",room_name);
+    window.location="kwitter_page.html"
+  }
+  
   
